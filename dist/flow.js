@@ -1242,6 +1242,10 @@
         $.event(status, $.message());
         $.flowObj.uploadNextChunk();
       } else {
+        // do not retry if the file is paused
+        if ($.fileObj.paused) {
+          return;
+        }
         $.event('retry', $.message());
         $.pendingRetry = true;
         $.abort();
